@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="incentro.autosearch.Autosearch" pluginWidget="true" needsEntityContext="true" offlineCapable="true"
+        supportedPlatform="Native"
+        xmlns="http://www.mendix.com/widget/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
+    <name>Autosearch</name>
+    <description>Mendix Native textbox with an onchange event for searching values when user input is detected</description>
+    <icon/>
+    <properties>
+        <propertyGroup caption="General">
+            <propertyGroup caption="Data source">
+                <property key="searchvalue" type="attribute">
+                    <caption>Search value</caption>
+                    <description>The attribute which will hold the search value.</description>
+                    <attributeTypes>
+                        <attributeType name="String"/>
+                    </attributeTypes>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Events">
+                <property key="onChange" type="action" required="false">
+                    <caption>On change</caption>
+                    <description/>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Common">
+                <systemProperty key="Name"/>
+            </propertyGroup>
+        </propertyGroup>
+    </properties>
+</widget>
