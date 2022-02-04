@@ -244,12 +244,16 @@ __webpack_require__.r(__webpack_exports__);
 const defaultStyle = {
     container: {},
     label: {
-        color: "#F6BB42"
+        color: "#003C85"
     },
     input: {
-        height: 45,
         borderBottomWidth: 1,
-        borderBottomColor: '#de712b',
+        borderBottomColor: '#5997C0',
+    },
+    text: {
+        color: "#003C85",
+        fontSize: 18,
+        paddingBottom: 6,
     }
 };
 class Autosearch extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
@@ -257,18 +261,26 @@ class Autosearch extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
         super(props);
         this.styles = Object(_mendix_pluggable_widgets_tools__WEBPACK_IMPORTED_MODULE_2__["mergeNativeStyles"])(defaultStyle, this.props.style);
         this.onChangeHandler = this.onChange.bind(this);
+        this.onTouchStart = this.onTouch.bind(this);
+        this.onEndHandler = this.onEnd.bind(this);
         this.state = {
             textboxValue: '',
         };
     }
     render() {
-        return (Object(react__WEBPACK_IMPORTED_MODULE_0__["createElement"])(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], { style: this.styles.container },
-            Object(react__WEBPACK_IMPORTED_MODULE_0__["createElement"])(react_native__WEBPACK_IMPORTED_MODULE_1__["TextInput"], { style: this.styles.input, value: this.state.textboxValue, onChangeText: this.onChangeHandler, placeholder: 'Zoeken...' })));
+        return (Object(react__WEBPACK_IMPORTED_MODULE_0__["createElement"])(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], { style: this.styles.input },
+            Object(react__WEBPACK_IMPORTED_MODULE_0__["createElement"])(react_native__WEBPACK_IMPORTED_MODULE_1__["TextInput"], { style: this.styles.text, value: this.state.textboxValue, onChangeText: this.onChangeHandler, onTouchStart: this.onTouchStart, onEndEditing: this.onEndHandler, placeholder: 'Zoeken...', placeholderTextColor: "#5997C0", editable: this.props.editable })));
     }
     onChange(text) {
-        var _a;
         this.setState({ textboxValue: text });
         this.props.searchvalue.setValue(text);
+    }
+    onTouch() {
+        var _a;
+        (_a = this.props.onEnter) === null || _a === void 0 ? void 0 : _a.execute();
+    }
+    onEnd() {
+        var _a;
         (_a = this.props.onChange) === null || _a === void 0 ? void 0 : _a.execute();
     }
 }

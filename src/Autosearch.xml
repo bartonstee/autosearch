@@ -16,10 +16,18 @@
                         <attributeType name="String"/>
                     </attributeTypes>
                 </property>
+                <property key="editable" type="boolean" required="true" defaultValue="true">
+                    <caption>Editable</caption>
+                    <description/>
+                </property>
             </propertyGroup>
             <propertyGroup caption="Events">
                 <property key="onChange" type="action" required="false">
                     <caption>On change</caption>
+                    <description/>
+                </property>
+                <property key="onEnter" type="action" required="false">
+                    <caption>On enter</caption>
                     <description/>
                 </property>
             </propertyGroup>

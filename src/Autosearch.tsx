@@ -16,20 +16,27 @@ interface State {
 }
 
 const defaultStyle: AutosearchStyle = {
-    container: {},
+    container: {
+    },
     label: {
-        color: "#F6BB42"
+        color: "#003C85"
     },
     input: {
-        height: 45,
         borderBottomWidth: 1,
-        borderBottomColor: '#de712b',
+        borderBottomColor: '#5997C0',
+    },
+    text: {
+        color: "#003C85",
+        fontSize: 18,
+        paddingBottom: 6,
     }
 };
 
 export class Autosearch extends Component<AutosearchProps<AutosearchStyle>, State> {
     private readonly styles = mergeNativeStyles(defaultStyle, this.props.style);
     private readonly onChangeHandler = this.onChange.bind(this);
+    private readonly onTouchStart = this.onTouch.bind(this);
+    private readonly onEndHandler = this.onEnd.bind(this);
     constructor(props: AutosearchProps<AutosearchStyle>){
         super(props)
         this.state = {
@@ -40,8 +47,17 @@ export class Autosearch extends Component<AutosearchProps<AutosearchStyle>, Stat
 
     render(): ReactNode {
         return (
-        <View style={this.styles.container}> 
-                <TextInput style={this.styles.input} value={this.state.textboxValue} onChangeText={this.onChangeHandler} placeholder={'Zoeken...'}></TextInput>
+        <View style={this.styles.input}> 
+                <TextInput style={this.styles.text} 
+                value={this.state.textboxValue} 
+                onChangeText={this.onChangeHandler}
+                onTouchStart={this.onTouchStart}
+                onEndEditing={this.onEndHandler}
+                placeholder={'Zoeken...'}
+                placeholderTextColor="#5997C0"
+                editable={this.props.editable}
+                >
+                </TextInput>
         </View>
         )
     }
@@ -49,6 +65,13 @@ export class Autosearch extends Component<AutosearchProps<AutosearchStyle>, Stat
     private onChange(text: string) {
         this.setState({textboxValue: text});
         this.props.searchvalue.setValue(text);
+    }
+
+    private onTouch() {
+        this.props.onEnter?.execute();
+    }
+
+    private onEnd() {
         this.props.onChange?.execute();
     }
 }

@@ -9,12 +9,16 @@ export interface AutosearchProps<Style> {
     name: string;
     style: Style[];
     searchvalue: EditableValue<string>;
+    editable: boolean;
     onChange?: ActionValue;
+    onEnter?: ActionValue;
 }
 
 export interface AutosearchPreviewProps {
     class: string;
     style: string;
     searchvalue: string;
+    editable: boolean;
     onChange: {} | null;
+    onEnter: {} | null;
 }
