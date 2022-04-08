@@ -244,16 +244,13 @@ __webpack_require__.r(__webpack_exports__);
 const defaultStyle = {
     container: {},
     label: {
-        color: "#003C85"
+        color: "#5997C0"
     },
-    input: {
-        borderBottomWidth: 1,
-        borderBottomColor: '#5997C0',
-    },
+    input: {},
     text: {
-        color: "#003C85",
-        fontSize: 18,
-        paddingBottom: 6,
+        color: "#5997C0",
+        fontSize: 15,
+        padding: 10,
     }
 };
 class Autosearch extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
@@ -269,7 +266,7 @@ class Autosearch extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     }
     render() {
         return (Object(react__WEBPACK_IMPORTED_MODULE_0__["createElement"])(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], { style: this.styles.input },
-            Object(react__WEBPACK_IMPORTED_MODULE_0__["createElement"])(react_native__WEBPACK_IMPORTED_MODULE_1__["TextInput"], { style: this.styles.text, value: this.state.textboxValue, onChangeText: this.onChangeHandler, onTouchStart: this.onTouchStart, onEndEditing: this.onEndHandler, placeholder: 'Zoeken...', placeholderTextColor: "#5997C0", editable: this.props.editable })));
+            Object(react__WEBPACK_IMPORTED_MODULE_0__["createElement"])(react_native__WEBPACK_IMPORTED_MODULE_1__["TextInput"], { style: this.styles.text, value: this.state.textboxValue, onChangeText: this.onChangeHandler, onTouchStart: this.onTouchStart, onEndEditing: this.onEndHandler, placeholder: 'Zoeken naar monumentenborden', placeholderTextColor: "#5997C0", editable: this.props.editable })));
     }
     onChange(text) {
         this.setState({ textboxValue: text });

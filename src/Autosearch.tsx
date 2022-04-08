@@ -22,13 +22,11 @@ const defaultStyle: AutosearchStyle = {
         color: "#003C85"
     },
     input: {
-        borderBottomWidth: 1,
-        borderBottomColor: '#5997C0',
     },
     text: {
         color: "#003C85",
-        fontSize: 18,
-        paddingBottom: 6,
+        fontSize: 15,
+        padding: 10,
     }
 };
 
@@ -53,7 +51,7 @@ export class Autosearch extends Component<AutosearchProps<AutosearchStyle>, Stat
                 onChangeText={this.onChangeHandler}
                 onTouchStart={this.onTouchStart}
                 onEndEditing={this.onEndHandler}
-                placeholder={'Zoeken...'}
+                placeholder={'Zoeken naar monumentenborden'}
                 placeholderTextColor="#5997C0"
                 editable={this.props.editable}
                 >
