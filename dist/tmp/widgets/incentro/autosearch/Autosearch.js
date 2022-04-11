@@ -244,13 +244,15 @@ __webpack_require__.r(__webpack_exports__);
 const defaultStyle = {
     container: {},
     label: {
-        color: "#5997C0"
+        color: "#003C85"
     },
     input: {},
     text: {
-        color: "#5997C0",
+        color: "#003C85",
         fontSize: 15,
-        padding: 10,
+        paddingTop: 10,
+        paddingLeft: 10,
+        paddingBottom: 10
     }
 };
 class Autosearch extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
@@ -260,13 +262,33 @@ class Autosearch extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
         this.onChangeHandler = this.onChange.bind(this);
         this.onTouchStart = this.onTouch.bind(this);
         this.onEndHandler = this.onEnd.bind(this);
+        this.inputRef = Object(react__WEBPACK_IMPORTED_MODULE_0__["createRef"])();
         this.state = {
             textboxValue: '',
         };
     }
+    componentDidUpdate(prevProps) {
+        var _a;
+        if (prevProps.autoFocus !== this.props.autoFocus) {
+            if (this.props.autoFocus.value) {
+                setTimeout(() => {
+                    var _a;
+                    (_a = this.inputRef.current) === null || _a === void 0 ? void 0 : _a.focus();
+                    this.props.autoFocus.setValue(false);
+                    return;
+                }, 500);
+            }
+        }
+        if (prevProps.searchvalue !== this.props.searchvalue) {
+            if (this.props.searchvalue === undefined || this.props.searchvalue.displayValue === '') {
+                this.setState({ textboxValue: '' });
+                (_a = this.inputRef.current) === null || _a === void 0 ? void 0 : _a.clear;
+            }
+        }
+    }
     render() {
         return (Object(react__WEBPACK_IMPORTED_MODULE_0__["createElement"])(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], { style: this.styles.input },
-            Object(react__WEBPACK_IMPORTED_MODULE_0__["createElement"])(react_native__WEBPACK_IMPORTED_MODULE_1__["TextInput"], { style: this.styles.text, value: this.state.textboxValue, onChangeText: this.onChangeHandler, onTouchStart: this.onTouchStart, onEndEditing: this.onEndHandler, placeholder: 'Zoeken naar monumentenborden', placeholderTextColor: "#5997C0", editable: this.props.editable })));
+            Object(react__WEBPACK_IMPORTED_MODULE_0__["createElement"])(react_native__WEBPACK_IMPORTED_MODULE_1__["TextInput"], { style: this.styles.text, value: this.state.textboxValue, onChangeText: this.onChangeHandler, onTouchStart: this.onTouchStart, onEndEditing: this.onEndHandler, placeholder: 'Zoeken naar monumentenborden', placeholderTextColor: "#5997C0", editable: this.props.editable, ref: this.inputRef })));
     }
     onChange(text) {
         this.setState({ textboxValue: text });

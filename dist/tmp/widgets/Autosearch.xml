@@ -20,6 +20,13 @@
                     <caption>Editable</caption>
                     <description/>
                 </property>
+                <property key="autoFocus" type="attribute">
+                    <caption>Auto focus</caption>
+                    <description>Boolean attribute to focus the element.</description>
+                    <attributeTypes>
+                        <attributeType name="Boolean"/>
+                    </attributeTypes>
+                </property>
             </propertyGroup>
             <propertyGroup caption="Events">
                 <property key="onChange" type="action" required="false">

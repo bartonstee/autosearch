@@ -10,6 +10,7 @@ export interface AutosearchProps<Style> {
     style: Style[];
     searchvalue: EditableValue<string>;
     editable: boolean;
+    autoFocus: EditableValue<boolean>;
     onChange?: ActionValue;
     onEnter?: ActionValue;
 }
@@ -19,6 +20,7 @@ export interface AutosearchPreviewProps {
     style: string;
     searchvalue: string;
     editable: boolean;
+    autoFocus: string;
     onChange: {} | null;
     onEnter: {} | null;
 }

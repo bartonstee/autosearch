@@ -1,4 +1,4 @@
-import { Component, ReactNode, createElement } from "react";
+import { Component, ReactNode, createElement, createRef } from "react";
 import { TextStyle, ViewStyle, TextInput, View } from "react-native";
 
 import { Style, mergeNativeStyles } from "@mendix/pluggable-widgets-tools";
@@ -26,7 +26,9 @@ const defaultStyle: AutosearchStyle = {
     text: {
         color: "#003C85",
         fontSize: 15,
-        padding: 10,
+        paddingTop: 10,
+        paddingLeft: 10,
+        paddingBottom: 10
     }
 };
 
@@ -35,6 +37,7 @@ export class Autosearch extends Component<AutosearchProps<AutosearchStyle>, Stat
     private readonly onChangeHandler = this.onChange.bind(this);
     private readonly onTouchStart = this.onTouch.bind(this);
     private readonly onEndHandler = this.onEnd.bind(this);
+    inputRef = createRef<TextInput>();
     constructor(props: AutosearchProps<AutosearchStyle>){
         super(props)
         this.state = {
@@ -42,6 +45,23 @@ export class Autosearch extends Component<AutosearchProps<AutosearchStyle>, Stat
         }
     }
 
+    componentDidUpdate(prevProps: AutosearchProps<AutosearchStyle>) {
+        if (prevProps.autoFocus !== this.props.autoFocus) {
+            if (this.props.autoFocus.value) {
+                setTimeout(() => { 
+                    this.inputRef.current?.focus();
+                    this.props.autoFocus.setValue(false);
+                    return;
+                }, 500)
+            }
+        }
+        if (prevProps.searchvalue !== this.props.searchvalue) {
+            if (this.props.searchvalue === undefined || this.props.searchvalue.displayValue === '') {
+                this.setState({textboxValue: ''});
+                this.inputRef.current?.clear;
+            }
+        }
+    }
 
     render(): ReactNode {
         return (
@@ -54,6 +74,7 @@ export class Autosearch extends Component<AutosearchProps<AutosearchStyle>, Stat
                 placeholder={'Zoeken naar monumentenborden'}
                 placeholderTextColor="#5997C0"
                 editable={this.props.editable}
+                ref={this.inputRef}
                 >
                 </TextInput>
         </View>
