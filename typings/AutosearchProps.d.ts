@@ -13,6 +13,7 @@ export interface AutosearchProps<Style> {
     autoFocus: EditableValue<boolean>;
     onChange?: ActionValue;
     onEnter?: ActionValue;
+    onLeave?: ActionValue;
 }
 
 export interface AutosearchPreviewProps {
@@ -23,4 +24,5 @@ export interface AutosearchPreviewProps {
     autoFocus: string;
     onChange: {} | null;
     onEnter: {} | null;
+    onLeave: {} | null;
 }

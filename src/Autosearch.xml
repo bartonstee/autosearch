@@ -34,7 +34,11 @@
                     <description/>
                 </property>
                 <property key="onEnter" type="action" required="false">
-                    <caption>On enter</caption>
+                    <caption>On focus</caption>
+                    <description/>
+                </property>
+                <property key="onLeave" type="action" required="false">
+                    <caption>On submit</caption>
                     <description/>
                 </property>
             </propertyGroup>

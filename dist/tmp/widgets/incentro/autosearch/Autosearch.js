@@ -262,9 +262,10 @@ class Autosearch extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
         this.onChangeHandler = this.onChange.bind(this);
         this.onTouchStart = this.onTouch.bind(this);
         this.onEndHandler = this.onEnd.bind(this);
+        this.onLeaveHandler = this.onLeave.bind(this);
         this.inputRef = Object(react__WEBPACK_IMPORTED_MODULE_0__["createRef"])();
         this.state = {
-            textboxValue: '',
+            textboxValue: this.props.searchvalue.displayValue,
         };
     }
     componentDidUpdate(prevProps) {
@@ -284,11 +285,14 @@ class Autosearch extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
                 this.setState({ textboxValue: '' });
                 (_a = this.inputRef.current) === null || _a === void 0 ? void 0 : _a.clear;
             }
+            else {
+                this.setState({ textboxValue: this.props.searchvalue.displayValue });
+            }
         }
     }
     render() {
         return (Object(react__WEBPACK_IMPORTED_MODULE_0__["createElement"])(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], { style: this.styles.input },
-            Object(react__WEBPACK_IMPORTED_MODULE_0__["createElement"])(react_native__WEBPACK_IMPORTED_MODULE_1__["TextInput"], { style: this.styles.text, value: this.state.textboxValue, onChangeText: this.onChangeHandler, onTouchStart: this.onTouchStart, onEndEditing: this.onEndHandler, placeholder: 'Zoeken naar monumentenborden', placeholderTextColor: "#5997C0", editable: this.props.editable, ref: this.inputRef })));
+            Object(react__WEBPACK_IMPORTED_MODULE_0__["createElement"])(react_native__WEBPACK_IMPORTED_MODULE_1__["TextInput"], { style: this.styles.text, value: this.state.textboxValue, onChangeText: this.onChangeHandler, onFocus: this.onTouchStart, onSubmitEditing: this.onLeaveHandler, onEndEditing: this.onEndHandler, placeholder: 'Zoeken naar monumentenborden', placeholderTextColor: "#5997C0", editable: this.props.editable, ref: this.inputRef })));
     }
     onChange(text) {
         this.setState({ textboxValue: text });
@@ -301,6 +305,10 @@ class Autosearch extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     onEnd() {
         var _a;
         (_a = this.props.onChange) === null || _a === void 0 ? void 0 : _a.execute();
+    }
+    onLeave() {
+        var _a;
+        (_a = this.props.onLeave) === null || _a === void 0 ? void 0 : _a.execute();
     }
 }
 

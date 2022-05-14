@@ -37,11 +37,12 @@ export class Autosearch extends Component<AutosearchProps<AutosearchStyle>, Stat
     private readonly onChangeHandler = this.onChange.bind(this);
     private readonly onTouchStart = this.onTouch.bind(this);
     private readonly onEndHandler = this.onEnd.bind(this);
+    private readonly onLeaveHandler = this.onLeave.bind(this);
     inputRef = createRef<TextInput>();
     constructor(props: AutosearchProps<AutosearchStyle>){
         super(props)
         this.state = {
-               textboxValue: '',
+               textboxValue: this.props.searchvalue.displayValue,
         }
     }
 
@@ -60,6 +61,9 @@ export class Autosearch extends Component<AutosearchProps<AutosearchStyle>, Stat
                 this.setState({textboxValue: ''});
                 this.inputRef.current?.clear;
             }
+            else {
+                this.setState({textboxValue: this.props.searchvalue.displayValue});
+            }
         }
     }
 
@@ -69,7 +73,8 @@ export class Autosearch extends Component<AutosearchProps<AutosearchStyle>, Stat
                 <TextInput style={this.styles.text} 
                 value={this.state.textboxValue} 
                 onChangeText={this.onChangeHandler}
-                onTouchStart={this.onTouchStart}
+                onFocus={this.onTouchStart}
+                onSubmitEditing={this.onLeaveHandler}
                 onEndEditing={this.onEndHandler}
                 placeholder={'Zoeken naar monumentenborden'}
                 placeholderTextColor="#5997C0"
@@ -92,5 +97,9 @@ export class Autosearch extends Component<AutosearchProps<AutosearchStyle>, Stat
 
     private onEnd() {
         this.props.onChange?.execute();
+    }
+
+    private onLeave() {
+        this.props.onLeave?.execute();
     }
 }
